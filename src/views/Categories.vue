@@ -46,7 +46,7 @@
           <form>
             <div class="input-field" >
               <select>
-                <option for=>Category</option>
+                <option>Category</option>
               </select>
               <label>Выберите категорию</label>
             </div>
