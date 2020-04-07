@@ -25,12 +25,12 @@
                   :class="{invalid: $v.title.$dirty && !$v.title.required}"
               >
               <label for="name">Название</label>
-              <span 
-                v-if="$v.title.$dirty && !$v.title.required"
-                class="helper-text invalid"
-              >
-              Введите название категории
-              </span>
+                <span 
+                  v-if="$v.title.$dirty && !$v.title.required"
+                  class="helper-text invalid"
+                >
+                Введите название категории
+                </span>
               </div>
 
             <div class="input-field">
