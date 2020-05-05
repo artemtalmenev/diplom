@@ -1,11 +1,11 @@
 <template>
   <div>
   <div class="page-title">
-    <h3>{{'Planning' | localize}}</h3>
+    <h3>{{'Employee_Objects' | localize}} {{name}}</h3>
     <h4>{{info.bill | currency('RUB')}}</h4>
   </div>
-
   <Loader v-if="loading" />
+  
 
   <p class="center" v-else-if="!categories.length">{{'Categories_NoCategoriesYet' | localize}}. <router-link to="/categories">{{'AddNewCategory' | localize}}</router-link></p>
 
@@ -39,7 +39,10 @@ export default {
     categories: []
   }),
   computed: {
-    ...mapGetters(['info'])
+    ...mapGetters(['info']),
+    name() {
+      return this.$store.getters.info.name
+    }
   },
   async mounted() {
     const records = await this.$store.dispatch('fetchRecords')
@@ -48,18 +51,18 @@ export default {
     this.categories = categories.map(cat => {
       const spend = records
       .filter(r => r.categoryId === cat.id)
-      .filter(r => r.type === 'outcome')
+      .filter(r => r.type === 'income')
       .reduce((total, record) => {
         return total += +record.amount
       }, 0)
 
       const percent = 100 * spend / cat.limit
       const progressPercent = percent > 100 ? 100 : percent
-      const progressColor = percent < 60
-      ? 'green'
+      const progressColor = percent < 50
+      ? 'red'
       : percent < 100 
         ? 'yellow'
-        : 'red'
+        : 'green'
 
       const tooltipValue = cat.limit - spend
       const tooltip = `${tooltipValue < 0 ? localizeFilter('ExcessOn') : localizeFilter('Remains')} ${currencyFilter(Math.abs(tooltipValue))}`

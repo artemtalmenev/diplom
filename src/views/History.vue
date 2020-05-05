@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="page-title">
-    <h3>{{'History_RecordHistory' | localize}}</h3>
+    <h3>{{'History_Operation' | localize}}</h3>
   </div>
 
   <div class="history-chart">
@@ -71,7 +71,7 @@ export default {
             label: localizeFilter('CostsForCategories'),
             data: categories.map(c => {
               return this.records.reduce((total, r) => {
-                if (r.categoryId === c.id && r.type === 'outcome') {
+                if (r.categoryId === c.id && r.type === 'income') {
                   total += +r.amount
                 }
                 return total

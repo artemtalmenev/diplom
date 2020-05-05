@@ -38,7 +38,7 @@
               </span>
             </div>
 
-            <button class="btn waves-effect waves-light" type="submit">
+            <button class="btn waves-effect blue waves-light" type="submit">
               {{'Categories_Create' | localize}}
               <i class="material-icons right">send</i>
             </button>

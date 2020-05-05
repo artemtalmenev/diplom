@@ -1,7 +1,7 @@
 <template>
   <form class="card auth-card" @submit.prevent="submitHandler">
   <div class="card-content">
-    <span class="card-title">Агентство ООО "Истра недвижимость"</span>
+    <span class="card-title">Регистрация риэлтора</span>
     <div class="input-field">
       <input
           id="email"
@@ -59,7 +59,7 @@
   <div class="card-action">
     <div>
       <button
-          class="btn waves-effect waves-light auth-submit"
+          class="btn waves-effect blue waves-light auth-submit"
           type="submit"
       >
         Зарегистрироваться

@@ -59,6 +59,12 @@ const routes = [
     name: 'record',
     meta: {layout: 'main', auth: true},
     component: () => import('../views/Record.vue')
+  },
+  {
+    path: '/task',
+    name: 'task',
+    meta: {layout: 'main', auth: true},
+    component: () => import('../views/Task.vue')
   }
 ]
 

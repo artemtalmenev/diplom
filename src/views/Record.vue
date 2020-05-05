@@ -6,7 +6,7 @@
 
   <Loader v-if="loading" />
 
-  <p class="center" v-else-if="!categories.length">Категорий пока нет. <router-link to="/categories">Добавить новую категорию</router-link></p>
+  <p class="center" v-else-if="!categories.length">{{'Categories_NoCategoriesYet' | localize}}. <router-link to="/categories">{{'AddNewCategory' | localize}}</router-link></p>
 
   <form class="form" v-else @submit.prevent="handleSubmit">
     <div class="input-field" >
@@ -80,7 +80,7 @@
                 </span>
     </div>
 
-    <button class="btn waves-effect waves-light" type="submit">
+    <button class="btn waves-effect blue waves-light" type="submit">
       {{'Create' | localize}}
       <i class="material-icons right">send</i>
     </button>

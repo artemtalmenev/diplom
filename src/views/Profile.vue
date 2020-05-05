@@ -25,7 +25,7 @@
     </label>
   </div>
 
-    <button class="btn waves-effect waves-light" type="submit">
+    <button class="btn waves-effect waves-light blue" type="submit">
       {{'Update' | localize}}
       <i class="material-icons right">send</i>
     </button>

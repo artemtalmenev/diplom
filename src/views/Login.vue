@@ -40,7 +40,7 @@
   <div class="card-action">
     <div>
       <button
-          class="btn waves-effect waves-light auth-submit"
+          class="btn waves-effect blue waves-light auth-submit"
           type="submit"
       >
         Войти
