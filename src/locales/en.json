@@ -11,6 +11,7 @@
   "Limit": "Limit",
   "Of": "of",
   "Create": "Create",
+  "Objects": "Objects",
   "Planning": "Planning",
   "Password": "Password",
   "EnterYourPassword": "Enter your password",
@@ -61,5 +62,6 @@
   "AgencyOf": "Agency of",
   "EmailFieldIsEmpty": "Email field is empty",
   "EnterAValidEmail": "Enter a valid Email",
-  "Employee_Objects": "Employee objects"
+  "Employee_Objects": "Employee objects",
+  "View_Object": "View object"
 }

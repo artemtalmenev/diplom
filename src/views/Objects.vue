@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="page-title">
-    <h3>{{'NewRecord' | localize}}</h3>
+    <h3>{{'Objects' | localize}}</h3>
   </div>
 
   <Loader v-if="loading" />
@@ -73,11 +73,25 @@
       >
       <label for="description">{{'Description' | localize}}</label>
        <span 
-                  v-if="$v.description.$dirty && !$v.description.required"
-                  class="helper-text invalid"
-                >
+          v-if="$v.description.$dirty && !$v.description.required"
+          class="helper-text invalid"
+        >
                 {{'EnterDescription' | localize}}
-                </span>
+       </span>
+    </div>
+
+    <div class="input-field">
+    <button class="btn waves-effect blue waves-ligh" @click="onPickFile">Загрузить файл</button>
+      <input
+          type="file"
+          style="display: none"
+          ref="fileInput"
+          accept="image/*"
+          @change="onFilePicked"
+      >
+    </div>
+    <div class="input-field">
+      <img :src="imageUrl" height="150">
     </div>
 
     <button class="btn waves-effect blue waves-light" type="submit">
@@ -94,7 +108,7 @@ import {mapGetters} from 'vuex'
 import localizeFilter from '@/filters/localize.filter'
 
 export default {
-  name: 'record',
+  name: 'objects',
   data: () => ({
     loading: true,
     select: null,
@@ -102,11 +116,13 @@ export default {
     category: null,
     type: 'income',
     amount: 1,
-    description: ''
+    imageUrl: '',
+    description: '',
+    image: null
   }),
   validations : {
     amount: {minValue: minValue(1)},
-    description: {required}
+    description: {required},
   },
   async mounted() {
     this.categories = await this.$store.dispatch('fetchCategories')
@@ -137,6 +153,9 @@ export default {
         this.$v.$touch()
         return
       }
+      if (!this.image) {
+        return
+      }
 
       if (this.canCreateRecord) {
         try {
@@ -144,6 +163,7 @@ export default {
             categoryId: this.category,
             amount: this.amount,
             description: this.description,
+            image: this.image,
             type: this.type,
             date: new Date().toJSON()
         })
@@ -161,6 +181,22 @@ export default {
       } else {
         this.$message(`${localizeFilter('NotEnoughFundsInTheAccount')} (${this.amount - this.info.bill})`)
       }
+    },
+    onPickFile() {
+      this.$refs.fileInput.click()
+    },
+    onFilePicked(event) {
+      const files = event.target.files
+      let filename = files[0].name;
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert ('Файл не корректен')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
     }
   },
   destroyed() {

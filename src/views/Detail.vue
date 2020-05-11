@@ -18,6 +18,9 @@
             <p>{{'Description' | localize}}: {{record.description}}</p>
             <p>{{'History_TableAmount' | localize}}: {{record.amount | currency}}</p>
             <p>{{'History_TableCategory' | localize}}: {{record.categoryName}}</p>
+            <p>
+              <img :src="record.image" width="100%"/>
+            </p>
 
             <small>{{record.date | date('datetime')}}</small>
           </div>

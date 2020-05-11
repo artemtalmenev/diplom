@@ -10,7 +10,7 @@
   <p class="center" v-else-if="!categories.length">{{'Categories_NoCategoriesYet' | localize}}. <router-link to="/categories">{{'AddNewCategory' | localize}}</router-link></p>
 
   <section v-else>
-    <div v-for="cat of categories" :key="cat.id">
+    <div v-for="(cat) of categories" :key="cat.id">
       <p>
         <strong>{{cat.title}}:</strong>
         {{cat.spend | currency}} {{'Of' | localize}} {{cat.limit | currency}}
@@ -22,6 +22,11 @@
             :style="{width: cat.progressPercent + '%'}"
         ></div>
       </div>
+      
+      <button class="btn waves-effect blue waves-light" @click="$router.push('/detailobject/' + cat.id)">
+      {{'View_Object' | localize}}
+      </button>
+      
     </div>
   </section>
 </div>
@@ -38,6 +43,7 @@ export default {
     loading: true,
     categories: []
   }),
+
   computed: {
     ...mapGetters(['info']),
     name() {
@@ -75,8 +81,7 @@ export default {
         tooltip
       }
     })
-
-
+    
     this.loading = false
   }
 }

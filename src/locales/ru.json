@@ -12,6 +12,7 @@
   "Of": "Из",
   "Task": "Задачи",
   "Create": "Создать",
+  "Objects": "Объекты",
   "Planning": "Планирование",
   "Password": "Пароль",
   "EnterYourPassword": "Введите ваш пароль",
@@ -61,5 +62,6 @@
   "AgencyOf": "Агентство",
   "EmailFieldIsEmpty": "Поле Email не заполнено",
   "EnterAValidEmail": "Введите корректный Email",
-  "Employee_Objects": "Объекты сотрудника"
+  "Employee_Objects": "Объекты сотрудника",
+  "View_Object": "Просмотреть объект"
 }

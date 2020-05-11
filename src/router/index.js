@@ -37,6 +37,12 @@ const routes = [
     component: () => import('../views/Detail.vue')
   },
   {
+    path: '/detailobject/:id',
+    name: 'detailobject',
+    meta: {layout: 'main', auth: true},
+    component: () => import('../views/DetailObject.vue')
+  },
+  {
     path: '/history',
     name: 'history',
     meta: {layout: 'main', auth: true},
@@ -65,6 +71,12 @@ const routes = [
     name: 'task',
     meta: {layout: 'main', auth: true},
     component: () => import('../views/Task.vue')
+  },
+  {
+    path: '/objects',
+    name: 'objects',
+    meta: {layout: 'main', auth: true},
+    component: () => import('../views/Objects.vue')
   }
 ]
 

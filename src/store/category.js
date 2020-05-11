@@ -31,11 +31,23 @@ export default {
         throw e
       }
     },
-    async createCategory({commit, dispatch}, {title, limit}) {
+    async createCategory({commit, dispatch}, {title, limit, image}) {
       try {
         const uid = await dispatch('getUid')
-        const category = await firebase.database().ref(`/users/${uid}/categories`).push({title, limit})
-        return {title, limit, id:category.key}
+        this.imageUrl=null;
+        const storageRef=firebase.storage().ref(`categories/${image.name}`).put(image);
+        storageRef.on(`state_changed`,snapshot=>{
+          this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+          }, error=>{console.log(error.message)},
+          async ()=>{this.uploadValue=100;
+            await storageRef.snapshot.ref.getDownloadURL()
+            .then( async (url)=>{
+              image = url;
+        const category = await firebase.database().ref(`/users/${uid}/categories`).push({title, limit, image})
+        return {title, limit, image, id:category.key}
+      });
+    },
+    )
       } catch (e) {
         commit('setError', e)
         throw e

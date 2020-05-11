@@ -27,6 +27,7 @@ export default {
       {title: localizeFilter('Menu_NewRecord'), url: '/record', },
       {title: localizeFilter('Property'), url: '/categories', },
       {title: localizeFilter('Task'), url: '/task', },
+      {title: localizeFilter('Objects'), url: '/objects', },
     ]
   })
 }
