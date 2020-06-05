@@ -1,5 +1,6 @@
 <template>
-   <nav class="navbar blue lighten-2">
+<div>
+   <nav class="navbar light-green accent-4">
       <div class="nav-wrapper">
         <div class="navbar-left">
           <a href="#" @click.prevent="$emit('click')">
@@ -37,6 +38,7 @@
         </ul>
       </div>
     </nav>
+</div>
 </template>
 
 <script>

@@ -11,7 +11,7 @@
 
   <section v-else>
     <div v-for="(cat) of categories" :key="cat.id">
-      <p>
+      <p class="flow-text">
         <strong>{{cat.title}}:</strong>
         {{cat.spend | currency}} {{'Of' | localize}} {{cat.limit | currency}}
       </p>
@@ -39,6 +39,11 @@ import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'planning',
+  metaInfo() {
+    return {
+    title: this.$title('Employee_Objects')
+    } 
+  },
   data: () => ({
     loading: true,
     categories: []

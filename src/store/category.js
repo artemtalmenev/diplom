@@ -22,16 +22,16 @@ export default {
         throw e
       }
     },
-    async updateCategory({commit, dispatch}, {title, limit, id}) {
+    async updateCategory({commit, dispatch}, {title, limit, description, adress, id}) {
       try {
         const uid = await dispatch('getUid')
-        await firebase.database().ref(`/users/${uid}/categories`).child(id).update({title, limit})
+        await firebase.database().ref(`/users/${uid}/categories`).child(id).update({title, limit, description, adress})
       } catch (e) {
         commit('setError', e)
         throw e
       }
     },
-    async createCategory({commit, dispatch}, {title, limit, image}) {
+    async createCategory({commit, dispatch}, {title, limit, image, description, adress}) {
       try {
         const uid = await dispatch('getUid')
         this.imageUrl=null;
@@ -43,8 +43,8 @@ export default {
             await storageRef.snapshot.ref.getDownloadURL()
             .then( async (url)=>{
               image = url;
-        const category = await firebase.database().ref(`/users/${uid}/categories`).push({title, limit, image})
-        return {title, limit, image, id:category.key}
+        const category = await firebase.database().ref(`/users/${uid}/categories`).push({title, limit, image, description, adress})
+        return {title, limit, image, description, adress, id:category.key}
       });
     },
     )

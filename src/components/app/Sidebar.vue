@@ -1,5 +1,5 @@
 <template>
-  <ul class="sidenav app-sidenav" :class="{open: value}">
+  <ul class="sidenav app-sidenav lime lighten-2" :class="{open: value}">
 
       <router-link
       v-for="link in links"
@@ -22,12 +22,12 @@ export default {
   data: () => ({
     links: [
       {title: localizeFilter('Total_Bill'), url: '/', exact: true},
-      {title: localizeFilter('History_Operation'), url: '/history', },
       {title: localizeFilter('Employee_Objects'), url: '/planning', },
-      {title: localizeFilter('Menu_NewRecord'), url: '/record', },
       {title: localizeFilter('Property'), url: '/categories', },
+      {title: localizeFilter('Record_Objects'), url: '/objects', },
+      {title: localizeFilter('History_Operation'), url: '/history', },
       {title: localizeFilter('Task'), url: '/task', },
-      {title: localizeFilter('Objects'), url: '/objects', },
+      {title: localizeFilter('Users'), url: '/users', },
     ]
   })
 }

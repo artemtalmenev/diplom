@@ -21,6 +21,36 @@
               >
               {{'Categories_EnterACategoryName' | localize}}</span>
             </div>
+            <div class="input-field">
+              <input
+                  id="adress"
+                  type="text"
+                  v-model="adress"
+                  :class="{invalid: $v.adress.$dirty && !$v.adress.required}"
+              >
+              <label for="desc">{{'Adress' | localize}}</label>
+              <span 
+              v-if="$v.adress.$dirty && !$v.adress.required"
+              class="helper-text invalid"
+
+              >
+              {{'Enter_AdressObject' | localize}}</span>
+            </div>
+            <div class="input-field">
+              <input
+                  id="description"
+                  type="text"
+                  v-model="description"
+                  :class="{invalid: $v.description.$dirty && !$v.description.required}"
+              >
+              <label for="desc">{{'Description' | localize}}</label>
+              <span 
+              v-if="$v.description.$dirty && !$v.description.required"
+              class="helper-text invalid"
+
+              >
+              {{'Categories_EnterACategoryName' | localize}}</span>
+            </div>
 
             <div class="input-field">
               <input
@@ -29,7 +59,7 @@
                   v-model.number="limit"
                   :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
               > 
-              <label for="limit">{{'Limit' | localize}}</label>
+              <label for="limit">{{'Price' | localize}}</label>
               <span 
               v-if="$v.title.$dirty && !$v.limit.minValue"
               class="helper-text invalid">
@@ -66,12 +96,16 @@ import localizeFilter from '@/filters/localize.filter'
 export default {
   data: () => ({
     title: '',
+    description: '',
+    adress: '',
     limit: 100,
     imageUrl: '',
     image: null
   }),
   validations : {
     title: {required},
+    description: {required},
+    adress: {required},
     limit: {minValue: minValue(100)}
   },
   mounted() {
@@ -87,11 +121,14 @@ export default {
       try {
         const category = await this.$store.dispatch('createCategory', {
           title: this.title,
+          description: this.description,
+          adress: this.adress,
           limit: this.limit,
           image: this.image
         })
-console.log(category)
         this.title = ''
+        this.description = ''
+        this.adress = ''
         this.limit = 100
         this.$v.$reset()
         this.$message(localizeFilter('Categories_CategoryHasBeenCreated'))

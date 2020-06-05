@@ -19,7 +19,8 @@
             <p>{{'History_TableAmount' | localize}}: {{record.amount | currency}}</p>
             <p>{{'History_TableCategory' | localize}}: {{record.categoryName}}</p>
             <p>
-              <img :src="record.image" width="100%"/>
+              <img v-for="image in record.images" :src="image" width="100%"/>
+              
             </p>
 
             <small>{{record.date | date('datetime')}}</small>
@@ -35,7 +36,12 @@
 <script>
 export default {
   name: 'detail',
-  data: () => ({
+  metaInfo() {
+    return {
+    title: this.$title('History_Operation')
+    } 
+  },
+  data: () => ({ 
     record: null,
     loading: true
   }),
@@ -43,7 +49,7 @@ export default {
     const id = this.$route.params.id
     const record = await this.$store.dispatch('fetchRecordById', id)
     const category = await this.$store.dispatch('fetchCategoryById', record.categoryId)
-
+    record.images = JSON.parse(record.images)
     this.record = {
       ...record,
       categoryName: category.title

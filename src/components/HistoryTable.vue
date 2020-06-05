@@ -1,11 +1,11 @@
 <template>
-  <table>
+  <table class="highlight">
       <thead>
       <tr>
         <th>#</th>
         <th>{{'History_TableAmount' | localize}}</th>
         <th>{{'Date' | localize}}</th>
-        <th>{{'History_TableCategory' | localize}}</th>
+        <th>{{'History_TableObject' | localize}}</th>
         <th>{{'History_TableType' | localize}}</th>
         <th>{{'History_TableOpen' | localize}}</th>
       </tr>

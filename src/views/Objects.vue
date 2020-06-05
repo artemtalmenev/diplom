@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="page-title">
-    <h3>{{'Objects' | localize}}</h3>
+    <h3>{{'Record_Objects' | localize}}</h3>
   </div>
 
   <Loader v-if="loading" />
@@ -81,9 +81,10 @@
     </div>
 
     <div class="input-field">
-    <button class="btn waves-effect blue waves-ligh" @click="onPickFile">Загрузить файл</button>
+    <div class="btn waves-effect blue waves-ligh" @click="onPickFile">Загрузить документ</div>
       <input
           type="file"
+          multiple
           style="display: none"
           ref="fileInput"
           accept="image/*"
@@ -91,7 +92,7 @@
       >
     </div>
     <div class="input-field">
-      <img :src="imageUrl" height="150">
+      <img v-for="image in imagesUrl" :src="image" height="150"/>
     </div>
 
     <button class="btn waves-effect blue waves-light" type="submit">
@@ -109,6 +110,11 @@ import localizeFilter from '@/filters/localize.filter'
 
 export default {
   name: 'objects',
+  metaInfo() {
+    return {
+    title: this.$title('Record_Objects')
+    } 
+  },
   data: () => ({
     loading: true,
     select: null,
@@ -116,7 +122,7 @@ export default {
     category: null,
     type: 'income',
     amount: 1,
-    imageUrl: '',
+    imagesUrl: '',
     description: '',
     image: null
   }),
@@ -153,7 +159,7 @@ export default {
         this.$v.$touch()
         return
       }
-      if (!this.image) {
+      if (!this.images) {
         return
       }
 
@@ -163,7 +169,7 @@ export default {
             categoryId: this.category,
             amount: this.amount,
             description: this.description,
-            image: this.image,
+            images: this.images,
             type: this.type,
             date: new Date().toJSON()
         })
@@ -187,16 +193,22 @@ export default {
     },
     onFilePicked(event) {
       const files = event.target.files
-      let filename = files[0].name;
+      const images = [];
+      const imagesUrl = [];
+      files.forEach(file => {
+        let filename = file.name;
       if (filename.lastIndexOf('.') <= 0) {
         return alert ('Файл не корректен')
       }
       const fileReader = new FileReader()
       fileReader.addEventListener('load', () => {
-        this.imageUrl = fileReader.result
+        imagesUrl.push(fileReader.result)
       })
-      fileReader.readAsDataURL(files[0])
-      this.image = files[0]
+      fileReader.readAsDataURL(file)
+      images.push(file)
+      });
+      this.images = images;
+      this.imagesUrl = imagesUrl;
     }
   },
   destroyed() {

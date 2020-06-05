@@ -55,6 +55,14 @@
         <span>С правилами согласен</span>
       </label>
     </p>
+    <div class="switch">
+    <label>
+      Риэлтор
+      <input type="checkbox" v-model="role" />
+      <span class="lever"></span>
+      Директор
+    </label>
+  </div>
   </div>
   <div class="card-action">
     <div>
@@ -80,11 +88,17 @@ import {email, required, minLength} from 'vuelidate/lib/validators'
 
 export default {
   name: 'register',
+  metaInfo() {
+    return {
+    title: this.$title('Registration')
+    } 
+  },
   data: () => ({
     email: '',
     password: '',
     name: '',
-    agree: false
+    agree: false,
+    role: false
   }),
   validations: {
     email: {email, required},
@@ -102,7 +116,8 @@ export default {
       const formData = {
         email: this.email,
         password: this.password,
-        name: this.name
+        name: this.name,
+        role: this.role
       }
 
       try {

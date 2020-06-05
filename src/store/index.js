@@ -4,6 +4,7 @@ import auth from './auth'
 import info from './info'
 import category from './category'
 import record from './record'
+import task from './task'
 
 Vue.use(Vuex)
 
@@ -30,6 +31,6 @@ export default new Vuex.Store({
     error: s => s.error
   },
   modules: {
-    auth, info, category, record
+    auth, info, category, record, task
   }
 })

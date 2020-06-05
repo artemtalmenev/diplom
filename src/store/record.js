@@ -6,18 +6,26 @@ export default {
       try {
           const uid = await dispatch('getUid')
           this.imageUrl=null;
-          const storageRef=firebase.storage().ref(`objects/${record.image.name}`).put(record.image);
-          storageRef.on(`state_changed`,snapshot=>{
-          this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
-          }, error=>{console.log(error.message)},
-          ()=>{this.uploadValue=100;
-            storageRef.snapshot.ref.getDownloadURL()
-            .then( async (url)=>{
-              record.image = url;
-              return await firebase.database().ref(`/users/${uid}/records`).push(record)
-            });
-          },
-          )
+          const images = [];
+          record.images.forEach((image, index) => {
+            const storageRef=firebase.storage().ref(`objects/${image.name}`).put(image);
+            storageRef.on(`state_changed`,snapshot=>{
+            this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+            }, error=>{console.log(error.message)},
+            ()=>{this.uploadValue=100;
+              storageRef.snapshot.ref.getDownloadURL()
+              .then( async (url)=>{
+                images.push(url)
+                console.log(index, record.images.length)
+                if (index === record.images.length - 1) {
+                  record.images = JSON.stringify(images)
+                  return await firebase.database().ref(`/users/${uid}/records`).push(record)
+                }
+              });
+            },
+            )
+          });
+         
       } catch (e) {
         commit('setError', e)
         throw e

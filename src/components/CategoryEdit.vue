@@ -31,7 +31,32 @@
                 >
                 {{'Categories_EnterACategoryName' | localize}}</span>
               </div>
-
+              <div class="input-field">
+              <input
+                  id="adress"
+                  type="text"
+                  v-model="adress"
+                  :class="{invalid: $v.adress.$dirty && !$v.adress.required}"
+              >
+                <span 
+                  v-if="$v.adress.$dirty && !$v.adress.required"
+                  class="helper-text invalid"
+                >
+                {{'Enter_Price' | localize}}</span>
+              </div>
+              <div class="input-field">
+              <input
+                  id="description"
+                  type="text"
+                  v-model="description"
+                  :class="{invalid: $v.description.$dirty && !$v.description.required}"
+              >
+                <span 
+                  v-if="$v.description.$dirty && !$v.description.required"
+                  class="helper-text invalid"
+                >
+                {{'Enter_Description' | localize}}</span>
+              </div>
             <div class="input-field">
               <input
                   id="limit"
@@ -39,15 +64,14 @@
                   v-model.number="limit"
                   :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
               >
-              <label for="limit">{{'Limit' | localize}}</label>
+              <label for="limit">{{'Price' | localize}}</label>
               <span 
               v-if="$v.title.$dirty && !$v.limit.minValue"
               class="helper-text invalid">
               
-              {{'Categories_MinimumValue' | localize}}: {{$v.limit.$params.minValue.min}}
+              {{'Enter_Price' | localize}}: {{$v.limit.$params.minValue.min}}
               </span>
             </div>
-
             <button class="btn waves-effect blue waves-light" type="submit">
               {{'Categories_Refresh' | localize}}
               <i class="material-icons right">send</i>
@@ -71,24 +95,32 @@ export default {
   data: () => ({
     select: null,
     title: '',
+    description: '',
+    adress: '',
     limit: 100,
     current: null
   }),
   validations : {
     title: {required},
+    description: {required},
+    adress: {required},
     limit: {minValue: minValue(100)}
   },
   watch: {
     current(catId) {
-      const {title, limit} = this.categories.find(c => c.id === catId)
+      const {title, limit, description, adress} = this.categories.find(c => c.id === catId)
       this.title = title
+      this.description = description
+      this.adress = adress
       this.limit = limit
     }
   },
   created() {
-    const {id, title, limit} = this.categories[0]
+    const {id, title, limit, description, adress} = this.categories[0]
     this.current = id
     this.title = title
+    this.description = description
+    this.adress = adress
     this.limit = limit
   },
   methods: {
@@ -102,6 +134,8 @@ export default {
         const categoryData ={
           id: this.current,
           title: this.title,
+          description: this.description,
+          adress: this.adress,
           limit: this.limit
         }
         await this.$store.dispatch('updateCategory', categoryData)
