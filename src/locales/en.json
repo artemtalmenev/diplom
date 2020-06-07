@@ -79,5 +79,11 @@
   "Registration": "Registration",
   "ViewRecord": "View record",
   "Tasks": "Task creation ",
-  "Users": "Users"
+  "Users": "Users",
+  "Users_Not_Yet": "Users not yet",
+  "View": "View",
+  "User": "User",
+  "Tasks_Users": "Tasks users",
+  "Tasks_User": "Tasks user",
+  "Task_User": "Task user"
 }

@@ -1,5 +1,7 @@
 <template>
 <div>
+  <Loader v-if="loading"/>
+  <div v-else-if="tasks">
   <div class="page-title">
     <h3>{{'Task' | localize}}</h3>
   </div>
@@ -22,32 +24,41 @@
         <li class="gantt-message" v-for="message in messages" v-bind:key="index">{{message}}</li>
       </ul>
     </div>
-    <gantt class="left-container" :tasks="tasks" @task-updated="logTaskUpdate" @link-updated="logLinkUpdate" @task-selected="selectTask"></gantt>
+    <gantt class="left-container" :tasks="tasks" @task-updated="logTaskUpdate" @task-selected="selectTask"></gantt>
   </div>
   </section>
+  </div>
   </div>
 </template>
  
 <script>
 import Gantt from '@/components/Gantt';
- 
+import { gantt } from 'dhtmlx-gantt';
+
 export default {
   name: 'task',
   components: {Gantt},
-  data () {
+  metaInfo() {
     return {
-      tasks: {
-        data: [
-          {id: 1, text: 'Task #1', start_date: '2020-06-01', duration: 3, progress: 0.6},
-          {id: 2, text: 'Task #2', start_date: '2020-06-03', duration: 3, progress: 0.4}
-        ],
-        links: [
-          {id: 1, source: 1, target: 2, type: '0'}
-        ]
-      },
-      messages: [],
-      selectedTask : null
-    }
+    title: this.$title('Task_User')
+    } 
+  },
+  data: () => ({
+    loading: true,
+    users: [],
+    selectedTask: null,
+    messages: [],
+    userID: localStorage.getItem('userID'),
+    tasks: null
+  }),
+  async mounted() {
+    const id = this.userID
+    this.tasks = null
+    gantt.clearAll()
+    console.log(id)
+    this.tasks = await this.$store.dispatch('fetchTasks', {id})
+    console.log(this.tasks)
+    this.loading = false
   },
   methods: {
     selectTask : function ( task ) {
@@ -61,17 +72,28 @@ export default {
       }
     },
  
-    logTaskUpdate (id, mode, task) {
+    async logTaskUpdate (id, mode, task) {
+      if (task["!nativeeditor_status"] === 'deleted') {
+         await this.$store.dispatch('deleteTask',{
+        userID: this.userID,
+        taskID: task.id
+        })
+      } else if (task["!nativeeditor_status"] === 'updated') {
+        await this.$store.dispatch('updateTask', {
+        task: JSON.stringify(task),
+        taskID: task.id,
+        userID: this.userID
+      })
+      }
+        else {
+        await this.$store.dispatch('createTask', {
+        task: JSON.stringify(task),
+        id: task.id,
+        userID: this.userID
+      })
+      }
       let text = (task && task.text ? ` (${task.text})`: '')
       let message = `Task ${mode}: ${id} ${text}`
-      this.addMessage(message)
-    },
- 
-    logLinkUpdate (id, mode, link) {
-      let message = `Link ${mode}: ${id}`
-      if (link) {
-        message += ` ( source: ${link.source}, target: ${link.target} )`
-      }
       this.addMessage(message)
     },
   },

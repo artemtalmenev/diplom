@@ -4,16 +4,14 @@
       <tr>
         <th>#</th>
         <th>{{'Users' | localize}}</th>
-        <th>{{'History_TableObject' | localize}}</th>
-        <th>{{'History_TableOpen' | localize}}</th>
+        <th>{{'View' | localize}}</th>
       </tr>
       </thead>
       
       <tbody>
-      <tr v-for="(user, idx) of users" :key="user.id">
-        <td>{{ idx+1 }}</td>
-        <td>{{ user.amount | currency('RUB') }}</td>
-        <td>{{ user.categoryName }}</td>
+      <tr v-for="(user, id) of users" :key="user.id">
+        <td>{{ id+1 }}</td>
+        <td>{{ user.name }}</td>
         <td>
           <button v-tooltip="'Открыть таблицу пользователя'" class="btn-small btn blue" @click="$router.push('/tasks/' + user.id)">
             <i class="material-icons">open_in_new</i>

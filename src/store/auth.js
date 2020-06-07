@@ -5,7 +5,13 @@ export default {
   actions: {
     async login({dispatch, commit}, {email,password}) {
       try {
-        await firebase.auth().signInWithEmailAndPassword(email, password)
+        const uid = await dispatch('getUid')
+       await firebase.auth().signInWithEmailAndPassword(email, password)
+       localStorage.removeItem('userRole') 
+       localStorage.removeItem('userID') 
+       const user = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
+       localStorage.setItem('userRole', user.role)
+       localStorage.setItem('userID', uid)  
       } catch (e) {
         commit('setError', e)
         throw e
@@ -15,12 +21,16 @@ export default {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password)
         const uid = await dispatch('getUid')
+        localStorage.removeItem('userRole')
+        localStorage.removeItem('userID')
         await firebase.database().ref(`/users/${uid}/info`).set({
           bill: 0,
           name,
           role: role ? 'Директор' : 'Риэлтор'
         })
         if (role) directorsRef.push({info: {userId: uid, name: name}})
+        role ? localStorage.setItem('userRole','Директор') : ''
+        localStorage.setItem('userID', uid)  
       } catch (e) {
         commit('setError', e)
         throw e
