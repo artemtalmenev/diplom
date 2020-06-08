@@ -46,7 +46,7 @@ export default {
   data: () => ({
     date: new Date(),
     interval: null,
-    dropdown:null
+    dropdown: null,
   }),
   methods: {
     async logout() {

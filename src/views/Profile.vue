@@ -15,6 +15,16 @@
       <label for="description">{{'Name' | localize}}</label>
       <small class="helper-text invalid" v-if="$v.name.$dirty && !$v.name.required">{{'Message_EnterName' | localize}}</small>
     </div>
+    <div class="input-field">
+      <input 
+        id="description" 
+        type="number" 
+        v-model.number="bill" 
+        
+      >
+      <label for="description">{{'Bill' | localize}}</label>
+      
+    </div>
 
     <div class="switch">
     <label>
@@ -36,9 +46,10 @@
 <script>
 import { mapGetters,mapActions } from 'vuex'
 import { required } from 'vuelidate/lib/validators'
-import localeFilter from '@/filters/localize.filter'
+import localizeFilter from '@/filters/localize.filter'
 
 export default {
+  name: 'profile',
   metaInfo() {
     return {
     title: this.$title('ProfileTitle')
@@ -46,13 +57,15 @@ export default {
   },
   data: () => ({
     name: '',
+    bill: 0,
     isRuLocale: true
   }),
   validations: {
-    name: { required }
+    name: { required },
   },
   mounted () {
     this.name = this.info.name
+    this.bill = this.info.bill
     this.isRuLocale = this.info.locale === 'ru-RU'
     setTimeout (() => {
        M.updateTextFields()
@@ -60,9 +73,7 @@ export default {
   },
   computed: {
     ...mapGetters(['info']),
-      name() {
-      return this.$store.getters.info.name
-    }
+      
   },
   methods: {
     ...mapActions(['updateInfo']),
@@ -74,8 +85,10 @@ export default {
       try {
         await this.updateInfo({
           name: this.name,
+          bill: this.bill,
           locale: this.isRuLocale ? 'ru-RU' : 'en-US'
         })
+        this.$message(localizeFilter('Profile_Update'))
       } catch(e) {}
     }
   }

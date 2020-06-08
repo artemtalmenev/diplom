@@ -17,7 +17,7 @@
           <span><b>Дата конца: </b>{{selectedTask.end_date|niceDate}}</span><br/>
         </div>
         <div v-else class="select-task-prompt">
-          <h2>Click any task</h2>
+          <h2>Новая задача</h2>
         </div>
       </div>
       <ul class="gantt-messages">

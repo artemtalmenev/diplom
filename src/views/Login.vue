@@ -49,7 +49,7 @@
     </div>
 
     <p class="center">
-      Нет аккаунта?
+      Нет в системе?
       <router-link to="/register">Зарегистрироваться</router-link>
     </p>
   </div>
@@ -88,7 +88,7 @@ export default {
       }
       const formData = {
         email: this.email,
-        password: this.password
+        password: this.password,
       }
       try {
       await this.$store.dispatch('login', formData)

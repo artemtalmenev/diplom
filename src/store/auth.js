@@ -6,12 +6,12 @@ export default {
     async login({dispatch, commit}, {email,password}) {
       try {
         const uid = await dispatch('getUid')
-       await firebase.auth().signInWithEmailAndPassword(email, password)
-       localStorage.removeItem('userRole') 
-       localStorage.removeItem('userID') 
-       const user = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
-       localStorage.setItem('userRole', user.role)
-       localStorage.setItem('userID', uid)  
+        await firebase.auth().signInWithEmailAndPassword(email, password)
+        localStorage.removeItem('userRole') 
+        localStorage.removeItem('userID') 
+        const user = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
+        localStorage.setItem('userRole', user.role)
+        localStorage.setItem('userID', uid)  
       } catch (e) {
         commit('setError', e)
         throw e
