@@ -1,5 +1,5 @@
 {
-  "ProfileTitle": "Profile",
+  "ProfileTitle": "Profile realtor:",
   "Message_EnterName": "Enter name",
   "Update": "Update",
   "Name": "Name",
@@ -85,5 +85,6 @@
   "User": "User",
   "Tasks_Users": "Tasks users",
   "Tasks_User": "Tasks user",
-  "Task_User": "Task user"
+  "Task_User": "Task user",
+  "My_Tasks": "My tasks"
 }

@@ -29,7 +29,7 @@ export default {
       {title: localizeFilter('Property'), url: '/categories', hasAccess: true},
       {title: localizeFilter('Record_Objects'), url: '/objects', hasAccess: true},
       {title: localizeFilter('History_Operation'), url: '/history', hasAccess: true},
-      {title: localizeFilter('Task'), url: '/task', hasAccess: true},
+      {title: localizeFilter('My_Tasks'), url: '/task', hasAccess: true},
     ];
     if (localStorage.getItem('userRole') === 'Директор') {
       array.push({title: localizeFilter('Users'), url: '/users', hasAccess: true})

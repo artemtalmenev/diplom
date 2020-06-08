@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="page-title">
-    <h3>{{'ProfileTitle' | localize}}</h3>
+    <h3>{{'ProfileTitle' | localize}} {{name}}</h3>
   </div>
 
   <form class="form" @submit.prevent="submitHandler">
@@ -59,7 +59,10 @@ export default {
     })
   },
   computed: {
-    ...mapGetters(['info'])
+    ...mapGetters(['info']),
+      name() {
+      return this.$store.getters.info.name
+    }
   },
   methods: {
     ...mapActions(['updateInfo']),

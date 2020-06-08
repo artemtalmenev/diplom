@@ -59,7 +59,6 @@ export default {
     this.tasks = null
     gantt.clearAll()
     this.tasks = await this.$store.dispatch('fetchTasks', {id})
-    console.log(this.tasks)
     this.userID = id
     this.loading = false
   },
