@@ -14,8 +14,8 @@
         <div class="card">
           <div class="card-image">
             <TwentyTwenty
-    :before="category.image"
-    :after="category.image" />
+            :before="category.image"
+            :after="category.image" />
             <router-link class="btn-floating halfway-fab waves-effect blue waves-light zindex" to='/categories' v-tooltip="'Редактировать объект'"><i class="material-icons">create</i></router-link>
             </div>
             <div class="card-content">
