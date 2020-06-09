@@ -14,6 +14,9 @@
 .auth-card{
   width:500px
 }
+.bill-card {
+  width: 100%;
+}
 .auth-submit{
   width:100%
 }
@@ -141,6 +144,11 @@
 .zindex {
   z-index: 1;
 }
+.login{
+  min-width: 400px;
+  max-width: 100%;
+}
+
 .form{
   max-width:500px
 }

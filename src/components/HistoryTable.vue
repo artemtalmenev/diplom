@@ -1,5 +1,5 @@
 <template>
-  <table class="highlight">
+  <table class="highlight responsive-table">
       <thead>
       <tr>
         <th>#</th>

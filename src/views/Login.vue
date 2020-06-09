@@ -1,4 +1,5 @@
 <template>
+<div class="login">
   <form class="card auth-card" @submit.prevent="submitHandler">
   <div class="card-content">
     <span class="card-title">Агентство ООО "Истра недвижимость"</span>
@@ -54,6 +55,7 @@
     </p>
   </div>
 </form>
+</div>
 </template>
 
 <script>

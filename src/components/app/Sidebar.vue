@@ -24,7 +24,7 @@ export default {
   }),
   mounted() {
     const array =  [
-      {title: localizeFilter('Total_Bill'), url: '/', exact: true, hasAccess: true},
+      {title: localizeFilter('Total_Bill'), url: '/home', exact: true, hasAccess: true},
       {title: localizeFilter('Employee_Objects'), url: '/planning', hasAccess: true},
       {title: localizeFilter('Property'), url: '/categories', hasAccess: true},
       {title: localizeFilter('Record_Objects'), url: '/objects', hasAccess: true},

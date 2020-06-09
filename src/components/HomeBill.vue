@@ -1,4 +1,5 @@
 <template>
+<div class="HobeBill">
   <div class="col s12 m6 l4">
       <div class="card light-blue bill-card">
         <div class="card-content white-text">
@@ -16,6 +17,7 @@
         </div>
       </div>
     </div>
+</div>
 </template>
 
 <script>

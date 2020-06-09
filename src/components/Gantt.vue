@@ -1,9 +1,7 @@
 <template>
-
   <div>
-  <div ref="gantt" style="width: 100%; height: 500px;"></div>
+    <div ref="gantt" style="width: 100%; height: 500px;"></div>
   </div>
-
 </template>
  
 <script>
