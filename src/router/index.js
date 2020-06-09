@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'login',
     meta: {layout: 'empty'},
     component: () => import('../views/Login.vue')
@@ -19,7 +19,7 @@ const routes = [
     component: () => import('../views/Register.vue')
   },
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     meta: {layout: 'main', auth: true},
     component: () => import('../views/Home.vue')
@@ -103,7 +103,7 @@ router.beforeEach((to, from, next) => {
   const requierAuth = to.matched.some(record => record.meta.auth)
 
   if (requierAuth && !currentUser) {
-    next('/login?message=login')
+    next('/?message=login')
   } else {
     next()
   }

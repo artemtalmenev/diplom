@@ -6,15 +6,17 @@
     <div class="page-title">
     <div class="breadcrumb-wrap">
       <router-link to="/planning" class="breadcrumb"><i class="material-icons">arrow_back</i></router-link>
-      <h3>{{'Object' | localize}} {{category.title}}</h3>
+      <h3>{{'Object' | localize}}: {{category.title}}</h3>
     </div>
     </div>
     <div class="row">
       <div class="col s12 m7">
         <div class="card">
           <div class="card-image">
-            <img :src="category.image" width="100%"/>
-            <router-link class="btn-floating halfway-fab waves-effect blue waves-light" to='/categories' v-tooltip="'Редактировать объект'"><i class="material-icons">create</i></router-link>
+            <TwentyTwenty
+    :before="category.image"
+    :after="category.image" />
+            <router-link class="btn-floating halfway-fab waves-effect blue waves-light zindex" to='/categories' v-tooltip="'Редактировать объект'"><i class="material-icons">create</i></router-link>
             </div>
             <div class="card-content">
               <p class="flow-text">{{'Adress' | localize}}: {{category.adress}}</p>
@@ -29,9 +31,6 @@
           </div>
         </div>
       </div>
-     <TwentyTwenty
-    :before="category.image"
-    :after="category.image" />
     </div>
   <p class="center" v-else>Запись с id={{$route.params.id}} не найдена</p>
 </div>

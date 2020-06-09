@@ -77,7 +77,7 @@
 
     <p class="center">
       Уже есть аккаунт?
-      <router-link to="/login">Войти!</router-link>
+      <router-link to="/">Войти!</router-link>
     </p>
   </div>
 </form>
@@ -122,7 +122,7 @@ export default {
 
       try {
         await this.$store.dispatch('register', formData)
-        this.$router.push('/')
+        this.$router.push('/home')
       } catch (e) {}
     }
   }

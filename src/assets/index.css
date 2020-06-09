@@ -127,6 +127,20 @@
 .pointer{
   cursor:pointer
 }
+.card .card-image img {
+  display: block;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+}
+.zindex {
+  z-index: 1;
+}
 .form{
   max-width:500px
 }
