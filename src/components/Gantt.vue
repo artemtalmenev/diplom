@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="gantt" class="Gantt"></div>
+    <div ref="gantt" class="Gantt hide-on-small-only"></div>
   </div>
 </template>
  
@@ -42,7 +42,7 @@ export default {
           cols: [
             {
               width:400,
-              min_width: 300,
+              min_width: 100,
               rows:[
                 {view: "grid", scrollX: "gridScroll", scrollable: true, scrollY: "scrollVer"}, 
                 {view: "scrollbar", id: "gridScroll", group:"horizontal"} 

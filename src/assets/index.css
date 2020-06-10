@@ -30,6 +30,12 @@
   .Time {
     font-size: 10px;
   }
+  .CategoryEdit {
+    margin-top: 30px;
+  }
+}
+.Please {
+  text-align: center;
 }
 .bill-card {
   width: 100%;

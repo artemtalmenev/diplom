@@ -15,6 +15,9 @@
         <li class="gantt-message" v-for="message in messages" v-bind:key="index">{{message}}</li>
       </ul>
   </div>
+  <div class="Please hide-on-med-and-up">
+    <h5>{{'Rotate_Device' | localize}}</h5>
+  </div>
   </section>
   </div>
   </div>

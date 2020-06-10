@@ -1,6 +1,6 @@
 <template>
   <div class="col s12 m6">
-        <div>
+        <div class="CategoryEdit">
           <div class="page-subtitle">
             <h4>{{'Categories_Edit' | localize}}</h4>
           </div>
