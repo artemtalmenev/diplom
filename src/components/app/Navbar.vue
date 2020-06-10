@@ -2,14 +2,14 @@
 <div>
    <nav class="navbar light-green accent-4">
       <div class="nav-wrapper">
-        <div class="navbar-left">
+        <div class="navbar-left Time">
           <a href="#" @click.prevent="$emit('click')">
             <i class="material-icons black-text">dehaze</i>
           </a>
           <span class="black-text">{{date | date('datetime')}}</span>
         </div>
-
-        <ul class="right hide-on-small-and-down">
+        
+        <ul class="right Drop">
           <li>
             <a
                 class="dropdown-trigger black-text"
@@ -36,6 +36,7 @@
             </ul>
           </li>
         </ul>
+        
       </div>
     </nav>
 </div>

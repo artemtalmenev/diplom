@@ -6,25 +6,11 @@
     <h3>{{'Task' | localize}}</h3>
   </div>
   <section>
-  <div class="container">
-    <div class="right-container">
-      <div class="gantt-selected-info">
-        <div v-if="selectedTask">
-          <h2>{{selectedTask.text}}</h2>
-          <span><b>ID: </b>{{selectedTask.id}}</span><br/>
-          <span><b>Прогресс: </b>{{selectedTask.progress|toPercent}}%</span><br/>
-          <span><b>Дата начала: </b>{{selectedTask.start_date|niceDate}}</span><br/>
-          <span><b>Дата конца: </b>{{selectedTask.end_date|niceDate}}</span><br/>
-        </div>
-        <div v-else class="select-task-prompt">
-          <h2>Новая задача</h2>
-        </div>
-      </div>
-      <ul class="gantt-messages">
+  <div class="container">  
+    <gantt class="left-container" :tasks="tasks" @task-updated="logTaskUpdate" @task-selected="selectTask"></gantt>
+    <ul class="gantt-messages">
         <li class="gantt-message" v-for="message in messages" v-bind:key="index">{{message}}</li>
       </ul>
-    </div>
-    <gantt class="left-container" :tasks="tasks" @task-updated="logTaskUpdate" @task-selected="selectTask"></gantt>
   </div>
   </section>
   </div>
@@ -55,9 +41,7 @@ export default {
     const id = this.userID
     this.tasks = null
     gantt.clearAll()
-    console.log(id)
     this.tasks = await this.$store.dispatch('fetchTasks', {id})
-    console.log(this.tasks)
     this.loading = false
   },
   methods: {
@@ -115,6 +99,7 @@ export default {
     position: relative;
     height: 100%;
   }
+
   .right-container {
     border-right: 1px solid #cecece;
     float: right;
@@ -124,6 +109,7 @@ export default {
     position: relative;
     z-index:2;
   }
+
   .gantt-messages {
     list-style-type: none;
     height: 50%;
@@ -132,6 +118,7 @@ export default {
     overflow-y: auto;
     padding-left: 5px;
   }
+
   .gantt-messages > .gantt-message {
     background-color: #f4f4f4;
     box-shadow:inset 5px 0 #d69000;
@@ -140,6 +127,7 @@ export default {
     margin: 5px 0;
     padding: 8px 0 8px 10px;
   }
+
   .gantt-selected-info {
     border-bottom: 1px solid #cecece;
     box-sizing: border-box;
@@ -148,9 +136,11 @@ export default {
     line-height: 28px;
     padding: 10px;
   }
+
   .gantt-selected-info h2 {
     border-bottom: 1px solid #cecece;
   }
+
   .select-task-prompt h2{
     color: #d9d9d9;
   }

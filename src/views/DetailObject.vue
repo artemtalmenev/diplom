@@ -11,7 +11,7 @@
     </div>
     <div class="row">
       <div class="col s12 m7">
-        <div class="card">
+        <div class="card hoverable">
           <div class="card-image">
             <img :src="category.image" width="100%"/>
             <router-link class="btn-floating halfway-fab waves-effect blue waves-light" to='/categories' v-tooltip="'Редактировать объект'"><i class="material-icons">create</i></router-link>

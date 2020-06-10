@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="gantt" style="width: 100%; height: 500px;"></div>
+    <div ref="gantt" class="Gantt"></div>
   </div>
 </template>
  
@@ -35,6 +35,35 @@ export default {
         });
 
         gantt.$_eventsInitialized = true;
+        gantt.config.touch = true ;
+        gantt.config.fit_tasks = true; 
+        gantt.config.layout = {
+          css: "gantt_container",
+          cols: [
+            {
+              width:400,
+              min_width: 300,
+              rows:[
+                {view: "grid", scrollX: "gridScroll", scrollable: true, scrollY: "scrollVer"}, 
+                {view: "scrollbar", id: "gridScroll", group:"horizontal"} 
+              ]
+            },
+            {resizer: true, width: 1},
+            {
+              rows:[
+                {view: "timeline", scrollX: "scrollHor", scrollY: "scrollVer"},
+                {view: "scrollbar", id: "scrollHor", group:"horizontal"}  
+              ]
+            },
+            {view: "scrollbar", id: "scrollVer"}
+          ]
+        };
+        gantt.config.columns = [
+    {name:"text",       label:"Название",  width:"*", tree:true },
+    {name:"start_date", label:"Начало", align:"center" },
+    {name:"duration",   label:"Длительность",   align:"center", width:100 },
+    {name:"add",        label:"",           width:44 }
+];
       }
     },
 
@@ -43,8 +72,7 @@ export default {
         gantt.createDataProcessor((entity, action, data, id) => { 
           this.$emit(`${entity}-updated`, id, action, data);
         });
-
-        gantt.$_dataProcessorInitialized = true;
+        gantt.config.grid_elastic_columns = true;   
       }
     }
   },
@@ -88,7 +116,7 @@ gantt.i18n.setLocale({
         /* grid columns */
         column_wbs: "WBS",
         column_text: "Задача",
-        column_start_date: "Время начала",
+        column_start_date: "Начало",
         column_duration: "Длительность",
         column_add: "",
  

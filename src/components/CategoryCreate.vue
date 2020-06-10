@@ -68,7 +68,7 @@
               </span>
             </div>
             <div class="input-field">
-            <div class="btn waves-effect blue waves-ligh" type="submit" @click="onPickFile">Загрузить файл</div>
+            <div class="btn waves-effect blue waves-ligh" type="submit" @click="onPickFile"> {{'Upload_File' | localize}}</div>
             <input
               type="file"
               style="display: none"

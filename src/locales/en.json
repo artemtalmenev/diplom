@@ -10,6 +10,10 @@
   "Profile": "Profile",
   "Exit": "Exit",
   "Income": "Income",
+  "Upload_File": "Upload file",
+  "Progress": "Progress",
+  "Start_Date": "Start date",
+  "End_Date": "End date",
   "Outcome": "Outcome",
   "Limit": "Limit",
   "Of": "of",
@@ -89,5 +93,6 @@
   "Tasks_Users": "Tasks users",
   "Tasks_User": "Tasks user",
   "Task_User": "Task user",
-  "My_Tasks": "My tasks"
+  "My_Tasks": "My tasks",
+  "New_Task": "New task"
 }

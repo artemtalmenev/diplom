@@ -9,25 +9,11 @@
       </a>
     </div>
   <section>
-  <div class="container">
-    <div class="right-container">
-      <div class="gantt-selected-info">
-        <div v-if="selectedTask">
-          <h2>{{selectedTask.text}}</h2>
-          <span><b>ID: </b>{{selectedTask.id}}</span><br/>
-          <span><b>Прогресс: </b>{{selectedTask.progress|toPercent}}%</span><br/>
-          <span><b>Дата начала: </b>{{selectedTask.start_date|niceDate}}</span><br/>
-          <span><b>Дата конца: </b>{{selectedTask.end_date|niceDate}}</span><br/>
-        </div>
-        <div v-else class="select-task-prompt">
-          <h2>Новая задача</h2>
-        </div>
-      </div>
-      <ul class="gantt-messages">
+  <div class="container"> 
+    <gantt class="left-container" :tasks="tasks" @task-updated="logTaskUpdate" @task-selected="selectTask"></gantt>
+    <ul class="gantt-messages">
         <li class="gantt-message" v-for="message in messages" v-bind:key="index">{{message}}</li>
       </ul>
-    </div>
-    <gantt class="left-container" :tasks="tasks" @task-updated="logTaskUpdate" @task-selected="selectTask"></gantt>
   </div>
   </section>
   </div>
@@ -95,7 +81,7 @@ export default {
       })
       }
       let text = (task && task.text ? ` (${task.text})`: '')
-      let message = `Task ${mode}: ${id} ${text}`
+      let message = `Задача ${mode}: ${id} ${text}`
       this.addMessage(message)
     },
   },
