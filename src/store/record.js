@@ -16,7 +16,6 @@ export default {
               storageRef.snapshot.ref.getDownloadURL()
               .then( async (url)=>{
                 images.push(url)
-                console.log(index, record.images.length)
                 if (index === record.images.length - 1) {
                   record.images = JSON.stringify(images)
                   return await firebase.database().ref(`/users/${uid}/records`).push(record)

@@ -5,8 +5,8 @@ export default {
   actions: {
     async login({dispatch, commit}, {email,password}) {
       try {
-        const uid = await dispatch('getUid')
         await firebase.auth().signInWithEmailAndPassword(email, password)
+        const uid = await dispatch('getUid')
         localStorage.removeItem('userRole') 
         localStorage.removeItem('userID') 
         const user = (await firebase.database().ref(`/users/${uid}/info`).once('value')).val()
