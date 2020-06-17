@@ -107,7 +107,7 @@ gantt.i18n.setLocale({
         gantt_save_btn: "Сохранить",
         gantt_cancel_btn: "Отменить",
         gantt_delete_btn: "Удалить",
-        confirm_closing: "",// Your changes will be lost, are you sure?
+        confirm_closing: "",
         confirm_deleting: "Задача будет удалена, вы уверены?",
         section_description: "Название задачи",
         section_time: "Период выполнения задачи",
@@ -137,11 +137,11 @@ gantt.i18n.setLocale({
         months: "Месяцев",
         years: "Лет",
  
-        /* message popup */
+        
         message_ok: "Ок",
         message_cancel: "Отменить",
  
-        /* constraints */
+        
         section_constraint: "Constraint",
         constraint_type: "Constraint type",
         constraint_date: "Constraint date",
@@ -154,7 +154,7 @@ gantt.i18n.setLocale({
         mso: "Must Start On",
         mfo: "Must Finish On",
  
-        /* resource control */
+        
         resources_filter_placeholder: "type to filter",
         resources_filter_label: "hide empty"
     }

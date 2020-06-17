@@ -33,6 +33,7 @@
   .CategoryEdit {
     margin-top: 30px;
   }
+  
 }
 .Please {
   text-align: center;
@@ -72,7 +73,7 @@
 }
 .app-sidenav.open{
   -webkit-transform:translateX(0);
-  transform:translateX(0)
+  transform:translateX(0);
 }
 .navbar{
   position:absolute;
