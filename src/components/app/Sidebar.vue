@@ -32,7 +32,7 @@ export default {
       {title: localizeFilter('My_Tasks'), url: '/task', hasAccess: true},
     ];
     if (localStorage.getItem('userRole') === 'Директор') {
-      array.push({title: localizeFilter('Users'), url: '/users', hasAccess: true})
+      array.push({title: localizeFilter('Users'), url: '/users', hasAccess: true}, {title: localizeFilter('Registration_New'), url: '/register', hasAccess: true},)
     }
     this.links = array
   }

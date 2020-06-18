@@ -74,11 +74,6 @@
         <i class="material-icons right">send</i>
       </button>
     </div>
-
-    <p class="center">
-      Уже есть аккаунт?
-      <router-link to="/">Войти!</router-link>
-    </p>
   </div>
 </form>
 </template>

@@ -47,11 +47,6 @@
         <i class="material-icons right">send</i>
       </button>
     </div>
-
-    <p class="center">
-      Нет в системе?
-      <router-link to="/register">Зарегистрироваться</router-link>
-    </p>
   </div>
 </form>
 </template>
