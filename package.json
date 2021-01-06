@@ -13,7 +13,7 @@
     "@progress/kendo-gantt-vue-wrapper": "^2020.1.423",
     "@progress/kendo-theme-default": "^4.18.1",
     "@progress/kendo-ui": "^2020.2.513",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.3",
     "composer": "^4.1.0",
     "core-js": "^3.6.4",
